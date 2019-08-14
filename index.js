@@ -11,12 +11,11 @@ var Sharmanka = {
     node: null,
     preloadNode: null,
     onPlay: function onPlay(event) {
-        try {
             if (_instanceof(event, Function)) this.node.addEventListener('onplay', function () {
                 return event();
             });
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     onPause: function onPause(event) {
@@ -25,7 +24,7 @@ var Sharmanka = {
                 return event();
             });
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     onStart: function onStart(event) {
@@ -34,7 +33,7 @@ var Sharmanka = {
                 if (this.node.currentTime === 0) event();
             });
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     onEnd: function onEnd(event) {
@@ -43,7 +42,7 @@ var Sharmanka = {
                 return event();
             });
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     onLoad: function onLoad(event) {
@@ -52,7 +51,7 @@ var Sharmanka = {
                 return event();
             });
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     onTick: function onTick(event) {
@@ -61,7 +60,7 @@ var Sharmanka = {
                 return event();
             });
         } catch (e) {
-            throw new Error('Cant ');
+            console.error(e);
         }
     },
     onBuffer: function onBuffer(event) {
@@ -70,32 +69,24 @@ var Sharmanka = {
                 return event();
             });
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     onLoadError: function onLoadError(event) {
-        try {
-            if (_instanceof(event, Function)) this.node.addEventListener('error', function (e) {
-                return event(e);
-            });
-        } catch (e) {
-            throw new Error(e);
-        }
+        if (_instanceof(event, Function)) this.node.addEventListener('error', function (e) {
+            return event(e);
+        });
     },
     onError: function onError(event) {
-        try {
-            if (_instanceof(event, Function)) this.node.addEventListener('abort', function (e) {
-                return event(e);
-            });
-        } catch (e) {
-            throw new Error(e);
-        }
+        if (_instanceof(event, Function)) this.node.addEventListener('abort', function (e) {
+            return event(e);
+        });
     },
     isPlay: function isPlay() {
         try {
             return !this.node.paused;
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     play: function play(event) {
@@ -103,7 +94,7 @@ var Sharmanka = {
             if (_instanceof(event, Function)) event();
             this.node.play();
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     pause: function pause(event) {
@@ -111,30 +102,30 @@ var Sharmanka = {
             if (_instanceof(event, Function)) event();
             this.node.pause();
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     preload: function preload(event) {
         try {
             if (_instanceof(event, Function) && !!this.preloadAllow) event();
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     volume: function volume(value) {
         try {
             if (typeof value === 'number' && value >= 0 && value <= 1) return this.node.volume = value;
-            if (typeof value !== 'number') throw new Error('Volume value should be a number');
-            if (typeof value === 'number' && value < 0 && value > 1) throw new Error('Volume value should be a positive number between 0 and 1');
+            if (typeof value !== 'number') console.error('Volume value should be a number');
+            if (typeof value === 'number' && value < 0 && value > 1) return console.error('Volume value should be a positive number between 0 and 1');
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     mute: function mute() {
         try {
             this.node.muted = !this.node.muted;
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     seek: function seek(value) {
@@ -142,22 +133,22 @@ var Sharmanka = {
             this.node.currentTime = value;
             this.currentTime = value.toFixed();
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     setTrack: function setTrack(value) {
         try {
             if (typeof value === 'string' && value.length > 0) return this.node.src = value;
-            if (typeof value !== "string" || value.length === 0) throw new Error('URL for track should be string by 1 character');
+            if (typeof value !== "string" || value.length === 0) return console.error('URL for track should be string by 1 character');
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     togglePlay: function togglePlay() {
         try {
             return this.node.paused ? this.node.play() : this.node.pause();
         } catch (e) {
-            throw new Error(e);
+            console.error(e);
         }
     },
     duration: 0,
