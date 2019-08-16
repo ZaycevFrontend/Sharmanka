@@ -11,6 +11,7 @@ var Sharmanka = {
     node: null,
     preloadNode: null,
     onPlay: function onPlay(event) {
+        try {
             if (_instanceof(event, Function)) this.node.addEventListener('onplay', function () {
                 return event();
             });
