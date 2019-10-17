@@ -12,7 +12,7 @@ var Sharmanka = {
     preloadNode: null,
     onPlay: function onPlay(event) {
         try {
-            if (_instanceof(event, Function)) this.node.addEventListener('onplay', function () {
+            if (_instanceof(event, Function)) this.node.addEventListener('playing', function () {
                 return event();
             });
         } catch (e) {
@@ -21,7 +21,7 @@ var Sharmanka = {
     },
     onPause: function onPause(event) {
         try {
-            if (_instanceof(event, Function)) this.node.addEventListener('onpause', function () {
+            if (_instanceof(event, Function)) this.node.addEventListener('pause', function () {
                 return event();
             });
         } catch (e) {
@@ -30,7 +30,7 @@ var Sharmanka = {
     },
     onStart: function onStart(event) {
         try {
-            if (_instanceof(event, Function)) this.node.addEventListener('onplay', function () {
+            if (_instanceof(event, Function)) this.node.addEventListener('playing', function () {
                 if (this.node.currentTime === 0) event();
             });
         } catch (e) {
