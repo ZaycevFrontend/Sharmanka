@@ -12,8 +12,8 @@ var Sharmanka = {
     preloadNode: null,
     onPlay: function onPlay(event) {
         try {
-            if (_instanceof(event, Function)) this.node.addEventListener('playing', function () {
-                return event();
+            if (_instanceof(event, Function)) this.node.addEventListener('playing', function removingListener() {
+                return event(removingListener);
             });
         } catch (e) {
             console.error(e);
@@ -21,8 +21,8 @@ var Sharmanka = {
     },
     onPause: function onPause(event) {
         try {
-            if (_instanceof(event, Function)) this.node.addEventListener('pause', function () {
-                return event();
+            if (_instanceof(event, Function)) this.node.addEventListener('pause', function removingListener() {
+                return event(removingListener);
             });
         } catch (e) {
             console.error(e);
@@ -30,8 +30,8 @@ var Sharmanka = {
     },
     onStart: function onStart(event) {
         try {
-            if (_instanceof(event, Function)) this.node.addEventListener('playing', function () {
-                if (this.node.currentTime === 0) event();
+            if (_instanceof(event, Function)) this.node.addEventListener('playing', function removingListener() {
+                if (this.node.currentTime === 0) event(removingListener);
             });
         } catch (e) {
             console.error(e);
@@ -39,8 +39,8 @@ var Sharmanka = {
     },
     onEnd: function onEnd(event) {
         try {
-            if (_instanceof(event, Function)) this.node.addEventListener('ended', function () {
-                return event();
+            if (_instanceof(event, Function)) this.node.addEventListener('ended', function removingListener() {
+                return event(removingListener);
             });
         } catch (e) {
             console.error(e);
@@ -48,8 +48,8 @@ var Sharmanka = {
     },
     onLoad: function onLoad(event) {
         try {
-            if (_instanceof(event, Function)) this.node.addEventListener('loadedmetadata', function () {
-                return event();
+            if (_instanceof(event, Function)) this.node.addEventListener('loadedmetadata', function removingListener() {
+                return event(removingListener);
             });
         } catch (e) {
             console.error(e);
@@ -57,8 +57,8 @@ var Sharmanka = {
     },
     onTick: function onTick(event) {
         try {
-            if (_instanceof(event, Function)) this.node.addEventListener('timeupdate', function () {
-                return event();
+            if (_instanceof(event, Function)) this.node.addEventListener('timeupdate', function removingListener() {
+                return event(removingListener);
             });
         } catch (e) {
             console.error(e);
@@ -66,21 +66,21 @@ var Sharmanka = {
     },
     onBuffer: function onBuffer(event) {
         try {
-            if (_instanceof(event, Function)) this.node.addEventListener('progress', function () {
-                return event();
+            if (_instanceof(event, Function)) this.node.addEventListener('progress', function removingListener() {
+                return event(removingListener);
             });
         } catch (e) {
             console.error(e);
         }
     },
     onLoadError: function onLoadError(event) {
-        if (_instanceof(event, Function)) this.node.addEventListener('error', function (e) {
-            return event(e);
+        if (_instanceof(event, Function)) this.node.addEventListener('error', function removingListener() {
+            return event(removingListener);
         });
     },
     onError: function onError(event) {
-        if (_instanceof(event, Function)) this.node.addEventListener('abort', function (e) {
-            return event(e);
+        if (_instanceof(event, Function)) this.node.addEventListener('abort', function removingListener() {
+            return event(removingListener);
         });
     },
     isPlay: function isPlay() {
