@@ -83,6 +83,9 @@ var Sharmanka = {
             return event(removingListener);
         });
     },
+    removeEvent: function removeEvent(eventName, event) {
+        if (_instanceof(event, Function)) return this.node.removeEventListener(eventName, event);
+    },
     isPlay: function isPlay() {
         try {
             return !this.node.paused;
