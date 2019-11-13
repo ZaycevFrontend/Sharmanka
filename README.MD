@@ -10,6 +10,17 @@
 * seek(number) - set the moment on audio track (s|ms?).
 * loop(boolean) - set a looping of audio track.
 * setTrack(string) - set track by url.
+* removeEvent(string, function) - remove function on selected event.
+```js
+const someFunction = () => {
+  console.log(`Current time: ${Sharmanka.currentTime}`);
+  if (Sharmanka.currentTime >= Sharmanka.duration) {
+    console.log('Track ended');
+    Sharmanka.removeEvent('timeupdate', someFunction);
+  }
+ }
+Sharmanka.onTick(someFunction);
+```
 
 ## Events
 * onPlay - fires when audio track begins playing.
