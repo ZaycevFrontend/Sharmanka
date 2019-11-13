@@ -19,6 +19,7 @@ const someFunction = () => {
     Sharmanka.removeEvent('timeupdate', someFunction);
   }
  }
+ 
 Sharmanka.onTick(someFunction);
 ```
 
