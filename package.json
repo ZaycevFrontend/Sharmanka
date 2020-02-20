@@ -1,6 +1,6 @@
 {
   "name": "sharmanka",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "HTML5 audio player for Zaycev.net React App",
   "main": "index.js",
   "scripts": {
