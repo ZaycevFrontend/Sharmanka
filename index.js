@@ -16,6 +16,7 @@ function _instanceof(left, right) {
 var Sharmanka = {
 	node: null,
 	preloadNode: null,
+	playPromise: null,
 	onPlay: function onPlay(event) {
 		try {
 			if (_instanceof(event, Function)) this.node.addEventListener('playing', function removingListener() {
@@ -102,7 +103,7 @@ var Sharmanka = {
 	play: function play(event) {
 		try {
 			if (_instanceof(event, Function)) event();
-			this.node.play();
+			this.playPromise = this.node.play();
 		} catch (e) {
 			console.error(e);
 		}
@@ -110,7 +111,7 @@ var Sharmanka = {
 	pause: function pause(event) {
 		try {
 			if (_instanceof(event, Function)) event();
-			this.node.pause();
+			this.playPromise.then(_ => this.node.pause());
 		} catch (e) {
 			console.error(e);
 		}
@@ -173,7 +174,7 @@ var Sharmanka = {
 		if (!this.isUnlockedAudio && node) {
 			this.isUnlockedAudio = true;
 
-			node.play();
+			this.playPromise = this.node.play();
 
 			window.removeEventListener('click', this.listenerMoveMouse.bind(this, node), false);
 		}
@@ -215,7 +216,7 @@ var Sharmanka = {
 			window.removeEventListener('click', this.listenerMoveMouse.bind(this, this.node), false);
 		}
 
-		this.pause();
+		this.node.src = '';
 		this.node = null;
 	}
 };
